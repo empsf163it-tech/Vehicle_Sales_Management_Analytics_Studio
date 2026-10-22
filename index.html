@@ -9,6 +9,209 @@
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Hero Visual & Labels: Mobile & Responsive Legibility */
+    .image-label {
+      position: absolute;
+      left: 24px;
+      right: 120px;
+      top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: #ddd;
+      font-size: 13px;
+      letter-spacing: .15em;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .image-label .label-primary {
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .image-label .label-secondary {
+      color: #bababa;
+      white-space: nowrap;
+    }
+    .hero-stamp {
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background: var(--red);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+      box-shadow: 0 15px 30px rgba(0,0,0,.6);
+      z-index: 3;
+    }
+    .hero-stamp b {
+      font-family: var(--display);
+      font-size: 22px;
+    }
+    .ticker {
+      overflow: hidden;
+      border-block: 1px solid #ffffff17;
+      background: #101010;
+      white-space: nowrap;
+      padding: 14px 0;
+      color: #c4c4c4;
+      font-size: 13px;
+      letter-spacing: .18em;
+      font-weight: 700;
+    }
+    .ticker-track {
+      display: inline-flex;
+      align-items: center;
+      min-width: max-content;
+      animation: tickerScroll 26s linear infinite;
+      will-change: transform;
+    }
+    .ticker:hover .ticker-track {
+      animation-play-state: paused;
+    }
+    .ticker-sep {
+      color: var(--red-bright);
+      margin: 0 20px;
+    }
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-block: 45px 50px;
+        gap: 36px;
+      }
+      .hero-visual {
+        min-height: 380px;
+        position: relative;
+      }
+      .hero-image {
+        right: 14px;
+      }
+      .image-label {
+        left: 20px;
+        top: 20px;
+        right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        max-width: calc(100% - 105px);
+      }
+      .image-label .label-primary,
+      .image-label span:first-child {
+        font-size: 12px;
+        letter-spacing: .15em;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.25;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .image-label .label-primary::before,
+      .image-label span:first-child::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--red-bright);
+        box-shadow: 0 0 8px rgba(165,29,45,.8);
+        flex-shrink: 0;
+      }
+      .image-label .label-secondary,
+      .image-label span:last-child {
+        font-size: 11px;
+        letter-spacing: .12em;
+        font-weight: 500;
+        color: #b5b5b5;
+        line-height: 1.25;
+        white-space: nowrap;
+      }
+      .hero-stamp {
+        top: 18px;
+        right: 0;
+        padding: 9px 14px;
+        box-shadow: 0 8px 24px rgba(0,0,0,.6);
+      }
+      .hero-stamp b {
+        font-size: 16px;
+        letter-spacing: .08em;
+      }
+      .image-big-type {
+        left: 20px;
+        bottom: 22px;
+        font-size: clamp(34px, 7.8vw, 48px);
+        line-height: .92;
+        max-width: calc(100% - 24px);
+      }
+      .hero-line {
+        right: 0;
+        bottom: 22px;
+        width: 3px;
+        height: 72px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-visual {
+        min-height: 345px;
+      }
+      .hero-image {
+        right: 12px;
+      }
+      .image-label {
+        left: 16px;
+        top: 16px;
+        gap: 3px;
+        max-width: calc(100% - 92px);
+      }
+      .image-label .label-primary,
+      .image-label span:first-child {
+        font-size: 11px;
+        letter-spacing: .13em;
+      }
+      .image-label .label-secondary,
+      .image-label span:last-child {
+        font-size: 10px;
+        letter-spacing: .11em;
+      }
+      .hero-stamp {
+        top: 14px;
+        right: 0;
+        padding: 8px 12px;
+      }
+      .hero-stamp b {
+        font-size: 14px;
+      }
+      .image-big-type {
+        left: 16px;
+        bottom: 18px;
+        font-size: clamp(28px, 8vw, 38px);
+      }
+      .hero-line {
+        bottom: 18px;
+        height: 60px;
+      }
+      .hero h1 {
+        font-size: clamp(32px, 8.5vw, 46px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track {
+        animation: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -37,16 +240,27 @@
       <div class="hero-visual">
         <div class="hero-image">
           <div class="image-shade"></div>
-          <div class="image-label"><span>STUDIO OVERVIEW</span><span>PERFORMANCE IN MOTION</span></div>
+          <div class="image-label">
+            <span class="label-primary">STUDIO OVERVIEW</span>
+            <span class="label-secondary">PERFORMANCE IN MOTION</span>
+          </div>
           <div class="image-big-type">DRIVE<br>FORWARD<span>.</span></div>
         </div>
-        <div class="hero-stamp"><b>INAUBU</b></div>
-        <div class="hero-line"></div>
+        <div class="hero-stamp" aria-label="Brand badge"><b>INAUBU</b></div>
+        <div class="hero-line" aria-hidden="true"></div>
       </div>
     </section>
     <section class="ticker" aria-label="Studio capabilities">
-      <div>INVENTORY CONTROL <span>✳</span> SALES INTELLIGENCE <span>✳</span> STOCK PERFORMANCE <span>✳</span> BUSINESS
-        CLARITY <span>✳</span> INVENTORY CONTROL <span>✳</span> SALES INTELLIGENCE <span>✳</span></div>
+      <div class="ticker-track">
+        <span>INVENTORY CONTROL</span> <span class="ticker-sep">✳</span>
+        <span>SALES INTELLIGENCE</span> <span class="ticker-sep">✳</span>
+        <span>STOCK PERFORMANCE</span> <span class="ticker-sep">✳</span>
+        <span>BUSINESS CLARITY</span> <span class="ticker-sep">✳</span>
+        <span>INVENTORY CONTROL</span> <span class="ticker-sep">✳</span>
+        <span>SALES INTELLIGENCE</span> <span class="ticker-sep">✳</span>
+        <span>STOCK PERFORMANCE</span> <span class="ticker-sep">✳</span>
+        <span>BUSINESS CLARITY</span> <span class="ticker-sep">✳</span>
+      </div>
     </section>
     <section class="section-wrap section-pad intro-grid">
       <div>
@@ -71,22 +285,137 @@
       </div>
       <div class="feature-grid">
         <article class="feature-card">
+          <div class="feature-card-media">
+            <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80" alt="Vehicle inventory stock in showroom" loading="lazy">
+            <span class="feature-card-tag">LOT SYNC</span>
+          </div>
           <div class="feature-icon">▤</div>
           <h3>Inventory clarity</h3>
           <p>See vehicle details, asking prices, availability, and time in stock in one organized view.</p><a
             href="dashboard.html#inventory">Explore stock <span>↗</span></a>
         </article>
         <article class="feature-card featured">
+          <div class="feature-card-media">
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80" alt="Dealership sales telemetry and digital cockpit" loading="lazy">
+            <span class="feature-card-tag">SALES SIGNALS</span>
+          </div>
           <div class="feature-icon">⌁</div>
           <h3>Sales intelligence</h3>
           <p>Explore sample sales trends, revenue snapshots, and vehicle category comparisons.</p><a
             href="dashboard.html#analytics">Explore analytics <span>↗</span></a>
         </article>
         <article class="feature-card">
+          <div class="feature-card-media">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="High velocity sports vehicle on lot" loading="lazy">
+            <span class="feature-card-tag">TURNOVER AUDIT</span>
+          </div>
           <div class="feature-icon">◷</div>
           <h3>Stock performance</h3>
           <p>Understand how long sample vehicles have remained in inventory and spot ageing stock.</p><a
             href="dashboard.html#reports">Explore reports <span>↗</span></a>
+        </article>
+      </div>
+    </section>
+    <section class="section-wrap vehicle-showcase-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">SHOWROOM SPOTLIGHT</p>
+          <h2>Active lot inventory<br><em>ready for dispatch.</em></h2>
+        </div>
+        <p>Live inventory sample tracked in the INAUBU vehicle management system with real-time status and valuation.</p>
+      </div>
+      <div class="vehicle-showcase-grid">
+        <article class="vehicle-card">
+          <div class="vehicle-card-img-wrap">
+            <img class="vehicle-card-img" src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80" alt="Mercedes-AMG E 63 Luxury Sedan" loading="lazy">
+            <span class="vehicle-status-badge available">Available</span>
+            <span class="vehicle-age-tag">9 Days in Stock</span>
+          </div>
+          <div class="vehicle-card-body">
+            <span class="vehicle-card-category">Luxury Sedan · Auto</span>
+            <h3 class="vehicle-card-title">Mercedes-AMG E 63</h3>
+            <div class="vehicle-card-specs">
+              <span>2024</span>
+              <span>12,400 km</span>
+              <span>Petrol</span>
+            </div>
+            <div class="vehicle-card-footer">
+              <div class="vehicle-price">
+                <small>Asking Price</small>
+                <b>₹1.42 Cr</b>
+              </div>
+              <a href="dashboard.html#inventory" class="vehicle-view-btn">Inspect ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vehicle-card">
+          <div class="vehicle-card-img-wrap">
+            <img class="vehicle-card-img" src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80" alt="Range Rover Autobiography Luxury SUV" loading="lazy">
+            <span class="vehicle-status-badge reserved">Reserved</span>
+            <span class="vehicle-age-tag">18 Days in Stock</span>
+          </div>
+          <div class="vehicle-card-body">
+            <span class="vehicle-card-category">Flagship SUV · 4WD</span>
+            <h3 class="vehicle-card-title">Range Rover Auto</h3>
+            <div class="vehicle-card-specs">
+              <span>2023</span>
+              <span>24,800 km</span>
+              <span>Diesel</span>
+            </div>
+            <div class="vehicle-card-footer">
+              <div class="vehicle-price">
+                <small>Asking Price</small>
+                <b>₹2.18 Cr</b>
+              </div>
+              <a href="dashboard.html#inventory" class="vehicle-view-btn">Inspect ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vehicle-card">
+          <div class="vehicle-card-img-wrap">
+            <img class="vehicle-card-img" src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80" alt="BMW M8 Competition Gran Coupe" loading="lazy">
+            <span class="vehicle-status-badge available">Available</span>
+            <span class="vehicle-age-tag">4 Days in Stock</span>
+          </div>
+          <div class="vehicle-card-body">
+            <span class="vehicle-card-category">Sport Coupe · Turbo</span>
+            <h3 class="vehicle-card-title">BMW M8 Competition</h3>
+            <div class="vehicle-card-specs">
+              <span>2024</span>
+              <span>8,200 km</span>
+              <span>Petrol</span>
+            </div>
+            <div class="vehicle-card-footer">
+              <div class="vehicle-price">
+                <small>Asking Price</small>
+                <b>₹1.85 Cr</b>
+              </div>
+              <a href="dashboard.html#inventory" class="vehicle-view-btn">Inspect ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vehicle-card">
+          <div class="vehicle-card-img-wrap">
+            <img class="vehicle-card-img" src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80" alt="Audi RS e-tron GT Electric Sport" loading="lazy">
+            <span class="vehicle-status-badge sold">Sold</span>
+            <span class="vehicle-age-tag">14 Days to Sell</span>
+          </div>
+          <div class="vehicle-card-body">
+            <span class="vehicle-card-category">Electric Sport · Dual Motor</span>
+            <h3 class="vehicle-card-title">Audi RS e-tron GT</h3>
+            <div class="vehicle-card-specs">
+              <span>2024</span>
+              <span>6,100 km</span>
+              <span>Electric</span>
+            </div>
+            <div class="vehicle-card-footer">
+              <div class="vehicle-price">
+                <small>Sold Price</small>
+                <b>₹1.68 Cr</b>
+              </div>
+              <a href="dashboard.html#inventory" class="vehicle-view-btn">Inspect ↗</a>
+            </div>
+          </div>
         </article>
       </div>
     </section>
